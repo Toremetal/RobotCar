@@ -621,7 +621,9 @@ void CameraWebServer_AP::readResponse(WiFiClient* client) {
         client->print("<iframe id='controllers' src='/?c{}' style='display:none;' hidden></iframe><iframe id='controllers2' src='http://");
         client->print(wifiIp);
         client->print(":80/control?var=framesize&val=12' style='display:none;' hidden></iframe>");
-        client->print("<button hidden style='width:30px;' name='bunny' title='police-car' onclick='document.getElementById(this.name).hidden=!document.getElementById(this.name).hidden;document.getElementById(this.title).hidden=!document.getElementById(this.title).hidden'>^</button></div></body></html>");
+        client->print("<sup style='font-size:small;color:orange;'>");
+        client->print(WiFi.localIP());
+        client->print("</sup><button hidden style='width:30px;' name='bunny' title='police-car' onclick='document.getElementById(this.name).hidden=!document.getElementById(this.name).hidden;document.getElementById(this.title).hidden=!document.getElementById(this.title).hidden'>^</button></div></body></html>");
         // The HTTP response ends with another blank line:
         client->println();
       } else {
@@ -754,7 +756,7 @@ void CameraWebServer_AP::SocketServer_Test(void) {
           String wNet = Serial.readStringUntil(',');
           Serial.read();
           String wPass = Serial.readStringUntil(';');
-          if (wPass != "") {
+          if (wNet != "") {
             Serial.print("connecting to WiFi: ");
             Serial.print(wNet);
             Serial.print(" ");
